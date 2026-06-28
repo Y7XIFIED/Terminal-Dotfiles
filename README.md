@@ -9,7 +9,7 @@ Experience the fully interactive website live here: [https://github.com/Y7XIFIED
 
 ## 📸 Preview
 <p align="center">
-  <img src="./preview.png" alt="Terminal Preview" />
+  <img src="./terminal_preview.png" alt="Terminal Preview" />
 </p>
 
 <div align="center"><p>Y7XIFIED</p></div>
