@@ -4,15 +4,15 @@
     "type": "file",
     "source": "C:/Users/Y7XIFIED/.config/fastfetch/ascii.txt",
     "color": {
-      "1": "#ff0000",
-      "2": "#ff0000",
-      "3": "#ff0000",
-      "4": "#ff0000",
-      "5": "#ff0000",
-      "6": "#ff0000",
-      "7": "#ff0000",
-      "8": "#ff0000",
-      "9": "#ff0000"
+      "1": "#A94DC1",
+      "2": "#A94DC1",
+      "3": "#A94DC1",
+      "4": "#A94DC1",
+      "5": "#A94DC1",
+      "6": "#A94DC1",
+      "7": "#A94DC1",
+      "8": "#A94DC1",
+      "9": "#A94DC1"
     },
     "padding": {
       "top": 1,
@@ -27,60 +27,60 @@
         "break",
         {
             "type": "custom",
-            "format": "\u001b[91m╭────────────╮"
+            "format": "\u001b[38;2;169;77;193m╭────────────╮"
         },
         {
             "type": "title",
-            "key": "\u001b[91m│ \u001b[97m user     \u001b[91m│",
+            "key": "\u001b[38;2;169;77;193m│ \u001b[97m user     \u001b[38;2;169;77;193m│",
             "format": "{2}"
         },
         {
             "type": "chassis",
-            "key": "\u001b[91m│ \u001b[97m󰏓 Chassis  \u001b[91m│",
+            "key": "\u001b[38;2;169;77;193m│ \u001b[97m󰏓 Chassis  \u001b[38;2;169;77;193m│",
             "format": "HP OMEN 16"
         },
         {
             "type": "os",
-            "key": "\u001b[91m│ \u001b[97m OS       \u001b[91m│",
+            "key": "\u001b[38;2;169;77;193m│ \u001b[97m OS       \u001b[38;2;169;77;193m│",
             "format": "Windows 11 25H2"
         },
         {
             "type": "custom",
-            "format": "\u001b[91m╰────────────╯"
+            "format": "\u001b[38;2;169;77;193m╰────────────╯"
         },
         "break",
         {
             "type": "custom",
-            "format": "\u001b[91m╭────────────╮"
+            "format": "\u001b[38;2;169;77;193m╭────────────╮"
         },
         {
             "type": "cpu",
-            "key": "\u001b[91m│ \u001b[97m CPU      \u001b[91m│",
+            "key": "\u001b[38;2;169;77;193m│ \u001b[97m CPU      \u001b[38;2;169;77;193m│",
             "format": "{1}"
         },
         {
             "type": "gpu",
-            "key": "\u001b[91m│ \u001b[97m󰢮 GPU      \u001b[91m│",
+            "key": "\u001b[38;2;169;77;193m│ \u001b[97m󰢮 GPU      \u001b[38;2;169;77;193m│",
             "format": "Nvidia RTX 4050",
             "hideType": "integrated"
         },
         {
             "type": "memory",
-            "key": "\u001b[91m│ \u001b[97m󰍛 Memory   \u001b[91m│",
-            "format": "{used} / {total} (\u001b[31m{percentage}\u001b[0m)"
+            "key": "\u001b[38;2;169;77;193m│ \u001b[97m󰍛 Memory   \u001b[38;2;169;77;193m│",
+            "format": "{used} / {total} (\u001b[38;2;169;77;193m{percentage}\u001b[0m)"
         },
         {
             "type": "disk",
-            "key": "\u001b[91m│ \u001b[97m󰋊 Disk     \u001b[91m│",
-            "format": "{size-used} / {size-total} (\u001b[31m{size-percentage}\u001b[0m)"
+            "key": "\u001b[38;2;169;77;193m│ \u001b[97m󰋊 Disk     \u001b[38;2;169;77;193m│",
+            "format": "{size-used} / {size-total} (\u001b[38;2;169;77;193m{size-percentage}\u001b[0m)"
         },
         {
             "type": "battery",
-            "key": "\u001b[91m│ \u001b[97m󰁹 Battery  \u001b[91m│"
+            "key": "\u001b[38;2;169;77;193m│ \u001b[97m󰁹 Battery  \u001b[38;2;169;77;193m│"
         },
         {
             "type": "custom",
-            "format": "\u001b[91m╰────────────╯"
+            "format": "\u001b[38;2;169;77;193m╰────────────╯"
         },
         "break",
         {

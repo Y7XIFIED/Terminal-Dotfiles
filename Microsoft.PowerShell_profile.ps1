@@ -32,6 +32,11 @@ function grep { rg @args }
 
 function Get-WindowsAccentColor {
     try {
+        $acc = (Get-ItemProperty 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Accent' -ErrorAction SilentlyContinue).AccentPalette
+        if ($acc -and $acc.Length -ge 16) {
+            $r = $acc[12]; $g = $acc[13]; $b = $acc[14]
+            return "$([char]27)[38;2;$r;$g;${b}m"
+        }
         $dwm = Get-ItemProperty 'HKCU:\Software\Microsoft\Windows\DWM' -ErrorAction Stop
         if ($dwm.ColorizationColor) {
             $col = [uint32]$dwm.ColorizationColor
@@ -49,6 +54,62 @@ function Get-WindowsAccentColor {
         }
     } catch {}
     return "$([char]27)[96m"
+}
+
+function Sync-AccentThemes {
+    try {
+        $acc = (Get-ItemProperty 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Accent' -ErrorAction SilentlyContinue).AccentPalette
+        if (-not ($acc -and $acc.Length -ge 16)) { return }
+        $r = $acc[12]; $g = $acc[13]; $b = $acc[14]
+        $hex = "#{0:X2}{1:X2}{2:X2}" -f $r, $g, $b
+        $cacheFile = "$env:TEMP\terminal_accent_cache.txt"
+        if ((Test-Path $cacheFile) -and ((Get-Content $cacheFile -ErrorAction SilentlyContinue) -eq $hex)) {
+            return
+        }
+
+        # Update Fastfetch config
+        $ffPath = "$env:USERPROFILE\.config\fastfetch\config.jsonc"
+        if (Test-Path $ffPath) {
+            $ff = [System.IO.File]::ReadAllText($ffPath, [System.Text.Encoding]::UTF8)
+            $ff = $ff -replace '"\d+":\s*"#[0-9a-fA-F]{6}"', ('"1": "' + $hex + '"')
+            $ansiCode = '\u001b[38;2;' + $r + ';' + $g + ';' + $b + 'm'
+            $ff = [regex]::Replace($ff, '\\u001b\[(38;2;\d+;\d+;\d+|91|31)m', $ansiCode)
+            $utf8NoBom = New-Object System.Text.UTF8Encoding($false)
+            [System.IO.File]::WriteAllText($ffPath, $ff, $utf8NoBom)
+        }
+
+        # Update Oh-My-Posh config
+        $ompPath = "$env:USERPROFILE\.config\oh-my-posh\red_white_black.omp.json"
+        if (Test-Path $ompPath) {
+            $omp = [System.IO.File]::ReadAllText($ompPath, [System.Text.Encoding]::UTF8)
+            $omp = [regex]::Replace($omp, '#[0-9a-fA-F]{6}', { param($m) if ($m.Value -ne '#ffffff' -and $m.Value -ne '#000000') { $hex } else { $m.Value } })
+            $utf8NoBom = New-Object System.Text.UTF8Encoding($false)
+            [System.IO.File]::WriteAllText($ompPath, $omp, $utf8NoBom)
+        }
+
+        # Update Windows Terminal scheme
+        $wtPath = "$env:USERPROFILE\AppData\Local\Packages\Microsoft.WindowsTerminal_8wekyb3d8bbwe\LocalState\settings.json"
+        if (Test-Path $wtPath) {
+            $wtText = Get-Content $wtPath -Raw
+            $wt = $wtText | ConvertFrom-Json
+            foreach ($scheme in $wt.schemes) {
+                if ($scheme.name -eq 'Red White Black') {
+                    $scheme.red = $hex
+                    $scheme.brightRed = "#{0:X2}{1:X2}{2:X2}" -f $acc[8], $acc[9], $acc[10]
+                    $scheme.blue = $hex
+                    $scheme.brightBlue = "#{0:X2}{1:X2}{2:X2}" -f $acc[4], $acc[5], $acc[6]
+                    $scheme.purple = $hex
+                    $scheme.brightPurple = "#{0:X2}{1:X2}{2:X2}" -f $acc[4], $acc[5], $acc[6]
+                    $scheme.cursorColor = $hex
+                    $scheme.selectionBackground = $hex
+                }
+            }
+            $newWtText = $wt | ConvertTo-Json -Depth 10
+            [System.IO.File]::WriteAllText($wtPath, $newWtText, [System.Text.Encoding]::UTF8)
+        }
+
+        $hex | Set-Content -Path $cacheFile -Encoding ASCII
+    } catch {}
 }
 
 function hi {
@@ -266,6 +327,7 @@ function animfetch {
 }
 
 # === Startup Executions ===
+Sync-AccentThemes
 fastfetch
 Show-GitDashboard
 

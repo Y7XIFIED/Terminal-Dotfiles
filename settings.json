@@ -1,173 +1,179 @@
-{
-    "$help": "https://aka.ms/terminal-documentation",
-    "$schema": "https://aka.ms/terminal-profiles-schema",
-    "actions": [],
-    "copyFormatting": "none",
-    "copyOnSelect": false,
-    "defaultProfile": "{61c54bbd-c2c6-5271-96e7-009a87ff44bf}",
-    "experimental.detectURLs": true,
-    "keybindings": [
-        {
-            "id": "Terminal.CopyToClipboard",
-            "keys": "ctrl+c"
-        },
-        {
-            "id": "Terminal.PasteFromClipboard",
-            "keys": "ctrl+v"
-        },
-        {
-            "id": "Terminal.FindText",
-            "keys": "ctrl+shift+f"
-        },
-        {
-            "id": "Terminal.DuplicatePaneAuto",
-            "keys": "alt+shift+d"
-        }
-    ],
-    "launchMode": "focus",
-    "newTabMenu": [
-        {
-            "type": "remainingProfiles"
-        }
-    ],
-    "profiles": {
-        "defaults": {},
-        "list": [
-            {
-                "bellStyle": "audible",
-                "colorScheme": "Red White Black",
-                "commandline": "%SystemRoot%\\System32\\WindowsPowerShell\\v1.0\\powershell.exe -nologo",
-                "cursorShape": "vintage",
-                "font": {
-                    "face": "JetBrainsMono Nerd Font",
-                    "features": {
-                        "calt": 1,
-                        "liga": 1
+﻿{
+    "$help":  "https://aka.ms/terminal-documentation",
+    "$schema":  "https://aka.ms/terminal-profiles-schema",
+    "actions":  [
+
+                ],
+    "copyFormatting":  "none",
+    "copyOnSelect":  false,
+    "defaultProfile":  "{61c54bbd-c2c6-5271-96e7-009a87ff44bf}",
+    "experimental.detectURLs":  true,
+    "keybindings":  [
+                        {
+                            "id":  "Terminal.CopyToClipboard",
+                            "keys":  "ctrl+c"
+                        },
+                        {
+                            "id":  "Terminal.PasteFromClipboard",
+                            "keys":  "ctrl+v"
+                        },
+                        {
+                            "id":  "Terminal.FindText",
+                            "keys":  "ctrl+shift+f"
+                        },
+                        {
+                            "id":  "Terminal.DuplicatePaneAuto",
+                            "keys":  "alt+shift+d"
+                        }
+                    ],
+    "launchMode":  "focus",
+    "newTabMenu":  [
+                       {
+                           "type":  "remainingProfiles"
+                       }
+                   ],
+    "profiles":  {
+                     "defaults":  {
+
+                                  },
+                     "list":  [
+                                  {
+                                      "bellStyle":  "audible",
+                                      "colorScheme":  "Red White Black",
+                                      "commandline":  "%SystemRoot%\\System32\\WindowsPowerShell\\v1.0\\powershell.exe -nologo",
+                                      "cursorShape":  "vintage",
+                                      "font":  {
+                                                   "face":  "JetBrainsMono Nerd Font",
+                                                   "features":  {
+                                                                    "calt":  1,
+                                                                    "liga":  1
+                                                                }
+                                               },
+                                      "guid":  "{61c54bbd-c2c6-5271-96e7-009a87ff44bf}",
+                                      "hidden":  false,
+                                      "name":  "Windows PowerShell",
+                                      "opacity":  100,
+                                      "useAcrylic":  false
+                                  },
+                                  {
+                                      "commandline":  "%SystemRoot%\\System32\\cmd.exe",
+                                      "guid":  "{0caa0dad-35be-5f56-a8ff-afceeeaa6101}",
+                                      "hidden":  false,
+                                      "name":  "Command Prompt"
+                                  },
+                                  {
+                                      "guid":  "{b453ae62-4e3d-5e58-b989-0a998ec441b8}",
+                                      "hidden":  false,
+                                      "name":  "Azure Cloud Shell",
+                                      "source":  "Windows.Terminal.Azure"
+                                  },
+                                  {
+                                      "colorScheme":  "Campbell",
+                                      "font":  {
+                                                   "face":  "JetBrainsMono Nerd Font"
+                                               },
+                                      "guid":  "{c7d84804-84e7-5e65-b8c4-38e91a82eb5c}",
+                                      "hidden":  false,
+                                      "name":  "archlinux",
+                                      "opacity":  84,
+                                      "source":  "Microsoft.WSL",
+                                      "useAcrylic":  true
+                                  },
+                                  {
+                                      "guid":  "{45e95c59-87af-567b-b307-090152acdbe9}",
+                                      "hidden":  false,
+                                      "name":  "Ubuntu",
+                                      "source":  "Microsoft.WSL"
+                                  },
+                                  {
+                                      "guid":  "{41ecfb90-d08e-5f8f-b4a5-9d7966bed406}",
+                                      "hidden":  false,
+                                      "name":  "Ubuntu",
+                                      "source":  "Microsoft.WSL"
+                                  },
+                                  {
+                                      "guid":  "{574e775e-4f2a-5b96-ac1e-a2962a402336}",
+                                      "hidden":  false,
+                                      "name":  "PowerShell",
+                                      "source":  "Windows.Terminal.PowershellCore"
+                                  },
+                                  {
+                                      "guid":  "{390e74dd-2098-5e8a-aa7e-1c4d3e38eaa4}",
+                                      "hidden":  false,
+                                      "name":  "Developer Command Prompt for VS 18",
+                                      "source":  "Windows.Terminal.VisualStudio"
+                                  },
+                                  {
+                                      "guid":  "{a29181ef-e4b2-51f6-8177-723ec3ab0557}",
+                                      "hidden":  false,
+                                      "name":  "Developer PowerShell for VS 18",
+                                      "source":  "Windows.Terminal.VisualStudio"
+                                  },
+                                  {
+                                      "guid":  "{5fb7b609-2ac3-5f83-b835-83c56c615924}",
+                                      "hidden":  false,
+                                      "name":  "Developer Command Prompt for VS 18",
+                                      "source":  "Windows.Terminal.VisualStudio"
+                                  },
+                                  {
+                                      "guid":  "{904995fa-6b2a-58a1-83d2-474a37a723dc}",
+                                      "hidden":  false,
+                                      "name":  "Developer PowerShell for VS 18",
+                                      "source":  "Windows.Terminal.VisualStudio"
+                                  },
+                                  {
+                                      "guid":  "{603a79f4-5540-572d-9d31-3c48a4a33ecf}",
+                                      "hidden":  false,
+                                      "name":  "Developer Command Prompt for VS 18",
+                                      "source":  "Windows.Terminal.VisualStudio"
+                                  },
+                                  {
+                                      "guid":  "{2b9a0eca-ce95-5712-9995-737f4bd51e77}",
+                                      "hidden":  false,
+                                      "name":  "Developer PowerShell for VS 18",
+                                      "source":  "Windows.Terminal.VisualStudio"
+                                  },
+                                  {
+                                      "commandline":  "\"%WINDIR%\\System32\\WindowsPowerShell\\v1.0\\powershell.exe\" -ExecutionPolicy ByPass -NoExit -Command \u0026 \u0027C:\\Users\\Y7XIFIED\\anaconda3\\shell\\condabin\\conda-hook.ps1\u0027 ; conda activate \u0027C:\\Users\\Y7XIFIED\\anaconda3\u0027 ",
+                                      "name":  "Anaconda PowerShell Prompt (anaconda3)",
+                                      "icon":  "C:\\Users\\Y7XIFIED\\anaconda3\\Menu\\anaconda_powershell_prompt.ico",
+                                      "startingDirectory":  "%USERPROFILE%"
+                                  },
+                                  {
+                                      "commandline":  "\"%WINDIR%\\System32\\cmd.exe\" /K C:\\Users\\Y7XIFIED\\anaconda3\\Scripts\\activate.bat C:\\Users\\Y7XIFIED\\anaconda3",
+                                      "name":  "Anaconda Prompt (anaconda3)",
+                                      "icon":  "C:\\Users\\Y7XIFIED\\anaconda3\\Menu\\anaconda_prompt.ico",
+                                      "startingDirectory":  "%USERPROFILE%"
+                                  }
+                              ]
+                 },
+    "schemes":  [
+                    {
+                        "background":  "#000000",
+                        "black":  "#000000",
+                        "blue":  "#A94DC1",
+                        "brightBlack":  "#555555",
+                        "brightBlue":  "#DB9EE5",
+                        "brightCyan":  "#FFFFFF",
+                        "brightGreen":  "#FFFFFF",
+                        "brightPurple":  "#DB9EE5",
+                        "brightRed":  "#B763CB",
+                        "brightWhite":  "#FFFFFF",
+                        "brightYellow":  "#FFFFFF",
+                        "cursorColor":  "#A94DC1",
+                        "cyan":  "#FFFFFF",
+                        "foreground":  "#FFFFFF",
+                        "green":  "#FFFFFF",
+                        "name":  "Red White Black",
+                        "purple":  "#A94DC1",
+                        "red":  "#A94DC1",
+                        "selectionBackground":  "#A94DC1",
+                        "white":  "#FFFFFF",
+                        "yellow":  "#FFFFFF"
                     }
-                },
-                "guid": "{61c54bbd-c2c6-5271-96e7-009a87ff44bf}",
-                "hidden": false,
-                "name": "Windows PowerShell",
-                "opacity": 100,
-                "useAcrylic": false
-            },
-            {
-                "commandline": "%SystemRoot%\\System32\\cmd.exe",
-                "guid": "{0caa0dad-35be-5f56-a8ff-afceeeaa6101}",
-                "hidden": false,
-                "name": "Command Prompt"
-            },
-            {
-                "guid": "{b453ae62-4e3d-5e58-b989-0a998ec441b8}",
-                "hidden": false,
-                "name": "Azure Cloud Shell",
-                "source": "Windows.Terminal.Azure"
-            },
-            {
-                "colorScheme": "Campbell",
-                "font": {
-                    "face": "JetBrainsMono Nerd Font"
-                },
-                "guid": "{c7d84804-84e7-5e65-b8c4-38e91a82eb5c}",
-                "hidden": false,
-                "name": "archlinux",
-                "opacity": 84,
-                "source": "Microsoft.WSL",
-                "useAcrylic": true
-            },
-            {
-                "guid": "{45e95c59-87af-567b-b307-090152acdbe9}",
-                "hidden": false,
-                "name": "Ubuntu",
-                "source": "Microsoft.WSL"
-            },
-            {
-                "guid": "{41ecfb90-d08e-5f8f-b4a5-9d7966bed406}",
-                "hidden": false,
-                "name": "Ubuntu",
-                "source": "Microsoft.WSL"
-            },
-            {
-                "guid": "{574e775e-4f2a-5b96-ac1e-a2962a402336}",
-                "hidden": false,
-                "name": "PowerShell",
-                "source": "Windows.Terminal.PowershellCore"
-            },
-            {
-                "guid": "{390e74dd-2098-5e8a-aa7e-1c4d3e38eaa4}",
-                "hidden": false,
-                "name": "Developer Command Prompt for VS 18",
-                "source": "Windows.Terminal.VisualStudio"
-            },
-            {
-                "guid": "{a29181ef-e4b2-51f6-8177-723ec3ab0557}",
-                "hidden": false,
-                "name": "Developer PowerShell for VS 18",
-                "source": "Windows.Terminal.VisualStudio"
-            },
-            {
-                "guid": "{5fb7b609-2ac3-5f83-b835-83c56c615924}",
-                "hidden": false,
-                "name": "Developer Command Prompt for VS 18",
-                "source": "Windows.Terminal.VisualStudio"
-            },
-            {
-                "guid": "{904995fa-6b2a-58a1-83d2-474a37a723dc}",
-                "hidden": false,
-                "name": "Developer PowerShell for VS 18",
-                "source": "Windows.Terminal.VisualStudio"
-            },
-            {
-                "guid": "{603a79f4-5540-572d-9d31-3c48a4a33ecf}",
-                "hidden": false,
-                "name": "Developer Command Prompt for VS 18",
-                "source": "Windows.Terminal.VisualStudio"
-            },
-            {
-                "guid": "{2b9a0eca-ce95-5712-9995-737f4bd51e77}",
-                "hidden": false,
-                "name": "Developer PowerShell for VS 18",
-                "source": "Windows.Terminal.VisualStudio"
-            },
-            {
-                "commandline": "\"%WINDIR%\\System32\\WindowsPowerShell\\v1.0\\powershell.exe\" -ExecutionPolicy ByPass -NoExit -Command & 'C:\\Users\\Y7XIFIED\\anaconda3\\shell\\condabin\\conda-hook.ps1' ; conda activate 'C:\\Users\\Y7XIFIED\\anaconda3' ",
-                "name": "Anaconda PowerShell Prompt (anaconda3)",
-                "icon": "C:\\Users\\Y7XIFIED\\anaconda3\\Menu\\anaconda_powershell_prompt.ico",
-                "startingDirectory": "%USERPROFILE%"
-            },
-            {
-                "commandline": "\"%WINDIR%\\System32\\cmd.exe\" /K C:\\Users\\Y7XIFIED\\anaconda3\\Scripts\\activate.bat C:\\Users\\Y7XIFIED\\anaconda3",
-                "name": "Anaconda Prompt (anaconda3)",
-                "icon": "C:\\Users\\Y7XIFIED\\anaconda3\\Menu\\anaconda_prompt.ico",
-                "startingDirectory": "%USERPROFILE%"
-            }
-        ]
-    },
-    "schemes": [
-        {
-            "background": "#000000",
-            "black": "#000000",
-            "blue": "#FF0000",
-            "brightBlack": "#555555",
-            "brightBlue": "#FF0000",
-            "brightCyan": "#FFFFFF",
-            "brightGreen": "#FFFFFF",
-            "brightPurple": "#FFFFFF",
-            "brightRed": "#FF0000",
-            "brightWhite": "#FFFFFF",
-            "brightYellow": "#FFFFFF",
-            "cursorColor": "#FF0000",
-            "cyan": "#FFFFFF",
-            "foreground": "#FFFFFF",
-            "green": "#FFFFFF",
-            "name": "Red White Black",
-            "purple": "#FFFFFF",
-            "red": "#FF0000",
-            "selectionBackground": "#FF0000",
-            "white": "#FFFFFF",
-            "yellow": "#FFFFFF"
-        }
-    ],
-    "tabWidthMode": "equal",
-    "themes": []
+                ],
+    "tabWidthMode":  "equal",
+    "themes":  [
+
+               ]
 }
