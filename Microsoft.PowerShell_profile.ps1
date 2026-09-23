@@ -78,14 +78,6 @@ function Sync-AccentThemes {
             [System.IO.File]::WriteAllText($ffPath, $ff, $utf8NoBom)
         }
 
-        # Update Oh-My-Posh config
-        $ompPath = "$env:USERPROFILE\.config\oh-my-posh\red_white_black.omp.json"
-        if (Test-Path $ompPath) {
-            $omp = [System.IO.File]::ReadAllText($ompPath, [System.Text.Encoding]::UTF8)
-            $omp = [regex]::Replace($omp, '#[0-9a-fA-F]{6}', { param($m) if ($m.Value -ne '#ffffff' -and $m.Value -ne '#000000') { $hex } else { $m.Value } })
-            $utf8NoBom = New-Object System.Text.UTF8Encoding($false)
-            [System.IO.File]::WriteAllText($ompPath, $omp, $utf8NoBom)
-        }
 
         # Update Windows Terminal scheme
         $wtPath = "$env:USERPROFILE\AppData\Local\Packages\Microsoft.WindowsTerminal_8wekyb3d8bbwe\LocalState\settings.json"
@@ -282,7 +274,6 @@ function backup-configs {
     Copy-Item -Path "$env:USERPROFILE\Documents\WindowsPowerShell\Microsoft.PowerShell_profile.ps1" -Destination $backupDir -Force
     Copy-Item -Path "$env:USERPROFILE\.config\fastfetch\config.jsonc" -Destination $backupDir -Force
     Copy-Item -Path "$env:USERPROFILE\.config\fastfetch\ascii.txt" -Destination $backupDir -Force
-    Copy-Item -Path "$env:USERPROFILE\.config\oh-my-posh\red_white_black.omp.json" -Destination $backupDir -Force
     Copy-Item -Path "$env:USERPROFILE\AppData\Local\Packages\Microsoft.WindowsTerminal_8wekyb3d8bbwe\LocalState\settings.json" -Destination $backupDir -Force
     
     $esc = [char]27
@@ -331,8 +322,34 @@ Sync-AccentThemes
 fastfetch
 Show-GitDashboard
 
-# Initialize Oh My Posh
-oh-my-posh init pwsh --config "$env:USERPROFILE\.config\oh-my-posh\red_white_black.omp.json" | Invoke-Expression
+# === Native Shell Prompt ===
+function prompt {
+    $esc = [char]27
+    $accent = Get-WindowsAccentColor
+    $currentPath = (Get-Location).Path
+    $homePath = $HOME
+    if ($currentPath.StartsWith($homePath, [System.StringComparison]::OrdinalIgnoreCase)) {
+        $displayPath = "~" + $currentPath.Substring($homePath.Length)
+    } else {
+        $displayPath = $currentPath
+    }
+
+    $gitInfo = ""
+    if (git rev-parse --is-inside-work-tree 2>$null) {
+        $branch = (git symbolic-ref --short HEAD 2>$null)
+        if (-not $branch) {
+            $branch = (git rev-parse --short HEAD 2>$null)
+        }
+        if ($branch) {
+            $gitInfo = " $esc[90mon$esc[0m $accent$branch$esc[0m"
+        }
+    }
+
+    $symbol = [char]0x276F
+    Write-Host ""
+    Write-Host " $displayPath$gitInfo"
+    return "$accent$symbol$esc[0m "
+}
 
 # === Claude + Copilot Dual Workflow ===
 # Save Claude’s brainstorm into a temp file, then refine with Copilot
