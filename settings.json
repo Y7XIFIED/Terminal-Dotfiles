@@ -5,19 +5,19 @@
     "copyFormatting": "none",
     "copyOnSelect": false,
     "defaultProfile": "{61c54bbd-c2c6-5271-96e7-009a87ff44bf}",
-    "keybindings": 
-    [
+    "experimental.detectURLs": true,
+    "keybindings": [
         {
             "id": "Terminal.CopyToClipboard",
             "keys": "ctrl+c"
         },
         {
-            "id": "Terminal.FindText",
-            "keys": "ctrl+shift+f"
-        },
-        {
             "id": "Terminal.PasteFromClipboard",
             "keys": "ctrl+v"
+        },
+        {
+            "id": "Terminal.FindText",
+            "keys": "ctrl+shift+f"
         },
         {
             "id": "Terminal.DuplicatePaneAuto",
@@ -25,39 +25,31 @@
         }
     ],
     "launchMode": "focus",
-    "tabWidthMode": "equal",
-    "experimental.detectURLs": true,
-    "newTabMenu": 
-    [
+    "newTabMenu": [
         {
             "type": "remainingProfiles"
         }
     ],
-    "profiles": 
-    {
+    "profiles": {
         "defaults": {},
-        "list": 
-        [
+        "list": [
             {
-                "commandline": "%SystemRoot%\\System32\\WindowsPowerShell\\v1.0\\powershell.exe -nologo",
+                "bellStyle": "audible",
                 "colorScheme": "Red White Black",
-                "font": 
-                {
+                "commandline": "%SystemRoot%\\System32\\WindowsPowerShell\\v1.0\\powershell.exe -nologo",
+                "cursorShape": "vintage",
+                "font": {
                     "face": "JetBrainsMono Nerd Font",
-                    "features": 
-                    {
-                        "liga": 1,
-                        "calt": 1
+                    "features": {
+                        "calt": 1,
+                        "liga": 1
                     }
                 },
                 "guid": "{61c54bbd-c2c6-5271-96e7-009a87ff44bf}",
                 "hidden": false,
                 "name": "Windows PowerShell",
                 "opacity": 100,
-                "useAcrylic": false,
-                "cursorShape": "vintage",
-                "experimental.rendering.forceFullRepaint": true,
-                "bellStyle": "audible"
+                "useAcrylic": false
             },
             {
                 "commandline": "%SystemRoot%\\System32\\cmd.exe",
@@ -73,8 +65,7 @@
             },
             {
                 "colorScheme": "Campbell",
-                "font": 
-                {
+                "font": {
                     "face": "JetBrainsMono Nerd Font"
                 },
                 "guid": "{c7d84804-84e7-5e65-b8c4-38e91a82eb5c}",
@@ -125,33 +116,58 @@
                 "hidden": false,
                 "name": "Developer PowerShell for VS 18",
                 "source": "Windows.Terminal.VisualStudio"
+            },
+            {
+                "guid": "{603a79f4-5540-572d-9d31-3c48a4a33ecf}",
+                "hidden": false,
+                "name": "Developer Command Prompt for VS 18",
+                "source": "Windows.Terminal.VisualStudio"
+            },
+            {
+                "guid": "{2b9a0eca-ce95-5712-9995-737f4bd51e77}",
+                "hidden": false,
+                "name": "Developer PowerShell for VS 18",
+                "source": "Windows.Terminal.VisualStudio"
+            },
+            {
+                "commandline": "\"%WINDIR%\\System32\\WindowsPowerShell\\v1.0\\powershell.exe\" -ExecutionPolicy ByPass -NoExit -Command & 'C:\\Users\\Y7XIFIED\\anaconda3\\shell\\condabin\\conda-hook.ps1' ; conda activate 'C:\\Users\\Y7XIFIED\\anaconda3' ",
+                "name": "Anaconda PowerShell Prompt (anaconda3)",
+                "icon": "C:\\Users\\Y7XIFIED\\anaconda3\\Menu\\anaconda_powershell_prompt.ico",
+                "startingDirectory": "%USERPROFILE%"
+            },
+            {
+                "commandline": "\"%WINDIR%\\System32\\cmd.exe\" /K C:\\Users\\Y7XIFIED\\anaconda3\\Scripts\\activate.bat C:\\Users\\Y7XIFIED\\anaconda3",
+                "name": "Anaconda Prompt (anaconda3)",
+                "icon": "C:\\Users\\Y7XIFIED\\anaconda3\\Menu\\anaconda_prompt.ico",
+                "startingDirectory": "%USERPROFILE%"
             }
         ]
     },
     "schemes": [
         {
-            "name": "Red White Black",
-            "black": "#000000",
-            "red": "#ff0000",
-            "green": "#ffffff",
-            "yellow": "#ffffff",
-            "blue": "#ff0000",
-            "purple": "#ffffff",
-            "cyan": "#ffffff",
-            "white": "#ffffff",
-            "brightBlack": "#555555",
-            "brightRed": "#ff0000",
-            "brightGreen": "#ffffff",
-            "brightYellow": "#ffffff",
-            "brightBlue": "#ff0000",
-            "brightPurple": "#ffffff",
-            "brightCyan": "#ffffff",
-            "brightWhite": "#ffffff",
             "background": "#000000",
-            "foreground": "#ffffff",
-            "cursorColor": "#ff0000",
-            "selectionBackground": "#ff0000"
+            "black": "#000000",
+            "blue": "#FF0000",
+            "brightBlack": "#555555",
+            "brightBlue": "#FF0000",
+            "brightCyan": "#FFFFFF",
+            "brightGreen": "#FFFFFF",
+            "brightPurple": "#FFFFFF",
+            "brightRed": "#FF0000",
+            "brightWhite": "#FFFFFF",
+            "brightYellow": "#FFFFFF",
+            "cursorColor": "#FF0000",
+            "cyan": "#FFFFFF",
+            "foreground": "#FFFFFF",
+            "green": "#FFFFFF",
+            "name": "Red White Black",
+            "purple": "#FFFFFF",
+            "red": "#FF0000",
+            "selectionBackground": "#FF0000",
+            "white": "#FFFFFF",
+            "yellow": "#FFFFFF"
         }
     ],
+    "tabWidthMode": "equal",
     "themes": []
 }

@@ -6,7 +6,9 @@ $OutputEncoding = [System.Text.Encoding]::UTF8
 
 # === Shell Completions & Behaviors ===
 Import-Module PSReadLine
-Set-PSReadLineOption -PredictionSource History -PredictionViewStyle InlineView -ErrorAction SilentlyContinue
+try {
+    Set-PSReadLineOption -PredictionSource History -PredictionViewStyle InlineView -ErrorAction SilentlyContinue
+} catch {}
 Set-PSReadLineKeyHandler -Key Tab -Function MenuComplete -ErrorAction SilentlyContinue
 Set-PSReadLineKeyHandler -Key Ctrl+Backspace -Function BackwardKillWord -ErrorAction SilentlyContinue
 
@@ -27,6 +29,76 @@ Set-Alias -Name ping -Value gping -Force -ErrorAction SilentlyContinue
 function ls { lsd @args }
 function find { fd @args }
 function grep { rg @args }
+
+function Get-WindowsAccentColor {
+    try {
+        $dwm = Get-ItemProperty 'HKCU:\Software\Microsoft\Windows\DWM' -ErrorAction Stop
+        if ($dwm.ColorizationColor) {
+            $col = [uint32]$dwm.ColorizationColor
+            $r = ($col -shr 16) -band 0xFF
+            $g = ($col -shr 8) -band 0xFF
+            $b = $col -band 0xFF
+            $brightness = [Math]::Max($r, [Math]::Max($g, $b))
+            if ($brightness -gt 0 -and $brightness -lt 170) {
+                $scale = 170.0 / $brightness
+                $r = [Math]::Min(255, [int]($r * $scale))
+                $g = [Math]::Min(255, [int]($g * $scale))
+                $b = [Math]::Min(255, [int]($b * $scale))
+            }
+            return "$([char]27)[38;2;$r;$g;${b}m"
+        }
+    } catch {}
+    return "$([char]27)[96m"
+}
+
+function hi {
+    param([string]$name = "Y7XIFIED")
+    $esc = [char]27
+    $accent = Get-WindowsAccentColor
+    $c_tl = [char]0x256d
+    $c_tr = [char]0x256e
+    $c_bl = [char]0x2570
+    $c_br = [char]0x256f
+    $c_v  = [char]0x2502
+    $c_h  = [char]0x2500
+    $border = New-Object System.String ($c_h, 50)
+
+    $hour = (Get-Date).Hour
+    $timeGreeting = if ($hour -ge 5 -and $hour -lt 12) {
+        "Good morning"
+    } elseif ($hour -ge 12 -and $hour -lt 17) {
+        "Good afternoon"
+    } elseif ($hour -ge 17 -and $hour -lt 22) {
+        "Good evening"
+    } else {
+        "Working late"
+    }
+
+    $vibes = @(
+        "Ready to build something awesome today?",
+        "Terminal primed and ready for action.",
+        "Clean code, high performance, zero bugs.",
+        "Stay hydrated, code passionately.",
+        "The compiler is waiting. Make magic happen."
+    )
+    $spark = $vibes | Get-Random
+
+    $line1 = "$timeGreeting, $name!"
+    $pad1 = 48 - $line1.Length
+    if ($pad1 -lt 0) { $pad1 = 0 }
+
+    $pad2 = 48 - $spark.Length
+    if ($pad2 -lt 0) { $pad2 = 0 }
+    $line2_padded = $spark + (" " * $pad2)
+
+    Write-Host ""
+    Write-Host "  $accent$c_tl$border$c_tr$esc[0m"
+    Write-Host "  $accent$c_v$esc[0m  $esc[97m$timeGreeting, $accent$name$esc[97m!$esc[0m$(" " * $pad1)$accent$c_v$esc[0m"
+    Write-Host "  $accent$c_v$esc[0m  $esc[90m$line2_padded$esc[0m$accent$c_v$esc[0m"
+    Write-Host "  $accent$c_bl$border$c_br$esc[0m"
+    Write-Host ""
+}
+Set-Alias -Name hello -Value hi -Force -ErrorAction SilentlyContinue
 
 function pokefetch {
     wsl /mnt/c/Users/Y7XIFIED/poke-fetch.sh
@@ -92,13 +164,14 @@ function kotofetch {
     }
     $marginSpaces = " " * $leftMargin
     
-    Write-Host "${marginSpaces}$esc[91m$c_tl$border$c_tr"
-    Write-Host "${marginSpaces}$esc[91m$c_v$esc[97m$padding_row$esc[91m$c_v"
-    Write-Host "${marginSpaces}$esc[91m$c_v$esc[97m$jp_line$esc[91m$c_v"
-    Write-Host "${marginSpaces}$esc[91m$c_v$esc[97m$padding_row$esc[91m$c_v"
-    Write-Host "${marginSpaces}$esc[91m$c_v$esc[97m$en_line$esc[91m$c_v"
-    Write-Host "${marginSpaces}$esc[91m$c_v$esc[97m$padding_row$esc[91m$c_v"
-    Write-Host "${marginSpaces}$esc[91m$c_bl$border$c_br"
+    $accent = Get-WindowsAccentColor
+    Write-Host "${marginSpaces}$accent$c_tl$border$c_tr$esc[0m"
+    Write-Host "${marginSpaces}$accent$c_v$esc[97m$padding_row$accent$c_v$esc[0m"
+    Write-Host "${marginSpaces}$accent$c_v$esc[97m$jp_line$accent$c_v$esc[0m"
+    Write-Host "${marginSpaces}$accent$c_v$esc[97m$padding_row$accent$c_v$esc[0m"
+    Write-Host "${marginSpaces}$accent$c_v$esc[97m$en_line$accent$c_v$esc[0m"
+    Write-Host "${marginSpaces}$accent$c_v$esc[97m$padding_row$accent$c_v$esc[0m"
+    Write-Host "${marginSpaces}$accent$c_bl$border$c_br$esc[0m"
 }
 
 # === Custom Helpers ===
@@ -112,11 +185,12 @@ function google {
 function test-port {
     param([int]$port, [string]$host = "localhost")
     $t = New-Object System.Net.Sockets.TcpClient
+    $esc = [char]27
     try {
         $t.Connect($host, $port)
-        Write-Host "`u{001b}[92mPort $port on $host is active (listening)`u{001b}[97m"
+        Write-Host "$esc[92mPort $port on $host is active (listening)$esc[97m"
     } catch {
-        Write-Host "`u{001b}[91mPort $port on $host is inactive (closed)`u{001b}[97m"
+        Write-Host "$esc[91mPort $port on $host is inactive (closed)$esc[97m"
     } finally {
         $t.Close()
     }
@@ -126,9 +200,10 @@ function Show-GitDashboard {
     if (git rev-parse --is-inside-work-tree 2>$null) {
         $status = git status -s
         $esc = [char]27
+        $accent = Get-WindowsAccentColor
         if ($status) {
             Write-Host ""
-            Write-Host "$esc[91mGit Status Dashboard (Uncommitted changes):$esc[97m"
+            Write-Host "$accent Git Status Dashboard (Uncommitted changes):$esc[97m"
             $status | ForEach-Object { Write-Host "  $_" }
         } else {
             Write-Host ""
